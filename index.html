@@ -207,7 +207,7 @@
       }
 
       // ===== CONTADOR SIMPLE =====
-      let contador = 0; // Variable global para almacenar el contador
+      let contador = 0;
       function incrementar() {
         contador++;
         document.getElementById("contador").textContent = contador;
@@ -235,7 +235,6 @@
 
       // ===== SUMA DE ARRAY =====
       function calcularSumaArray() {
-        // Obtiene todos los inputs con clase "arrayNum" y suma sus valores
         const inputs = document.querySelectorAll(".arrayNum");
         let suma = 0;
         inputs.forEach((input) => {
@@ -253,7 +252,7 @@
       }
 
       // ===== REGISTRO DE PERSONAS =====
-      const personas = []; // Array para almacenar objetos con nombre y edad
+      const personas = []; // Array en donde almacena los objetos con nombre y edad
       function agregarPersona() {
         const nombre = document.getElementById("personaNombre").value;
         const edad = document.getElementById("personaEdad").value;
@@ -292,7 +291,7 @@
       }
 
       // ===== CONTADOR CON INCREMENTO Y DECREMENTO =====
-      let contadorMod = 0; // Variable global para el contador
+      let contadorMod = 0; 
       function modificarContador(valor) {
         contadorMod += valor; // Suma o resta según el valor
         document.getElementById("contadorMod").textContent = contadorMod;
@@ -305,3 +304,4 @@
     </script>
   </body>
 </html>
+
