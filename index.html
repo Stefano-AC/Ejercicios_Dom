@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejercicios Interactivos</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+        padding: 40px;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #2c3e50;
+      }
+      section {
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        margin-top: 0;
+        color: #34495e;
+      }
+      input,
+      button {
+        padding: 8px 12px;
+        margin: 5px 5px 5px 0;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #2980b9;
+      }
+      ul {
+        padding-left: 20px;
+      }
+      .color-buttons button {
+        margin-right: 10px;
+      }
+      .red {
+        background-color: #e74c3c;
+      }
+      .green {
+        background-color: #2ecc71;
+      }
+      .blue {
+        background-color: #3498db;
+      }
+      .reset {
+        background-color: #bdc3c7;
+        color: #333;
+      }
+
+      #contenedor {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      section{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ejercicios Interactivos</h1>
+
+    <section>
+      <h2>Saludo interactivo</h2>
+      <input type="text" id="nombre" placeholder="Tu nombre" />
+      <br />
+      <button onclick="saludar()">Saludar</button>
+      <button onclick="limpiarSaludo()">Limpiar</button>
+      <p id="saludo"></p>
+    </section>
+
+    <section>
+      <h2>Suma de dos números</h2>
+      <input type="number" id="num1" />
+      <input type="number" id="num2" />
+      <br />
+      <button onclick="sumar()">Sumar</button>
+      <button onclick="limpiarSuma()">Limpiar</button>
+      <p id="resultadoSuma"></p>
+    </section>
+
+    <section>
+      <h2>Convertidor de temperatura</h2>
+      <input type="number" id="celsius" placeholder="°C" />
+      <br />
+      <button onclick="convertir()">Convertir</button>
+      <button onclick="limpiarTemperatura()">Limpiar</button>
+      <p id="fahrenheit"></p>
+    </section>
+
+    <section>
+      <h2>Contador simple</h2>
+      <button onclick="incrementar()">Incrementar</button>
+      <button onclick="reiniciarContador()">Reiniciar</button>
+      <p id="contador">0</p>
+    </section>
+
+    <section>
+      <h2>Lista de compras</h2>
+      <input type="text" id="producto" placeholder="Producto" />
+      <br />
+      <button onclick="agregarProducto()">Añadir</button>
+      <button onclick="limpiarLista()">Limpiar</button>
+      <ul id="listaCompras"></ul>
+    </section>
+
+    <section>
+      <h2>Suma de array de números</h2>
+      <input type="number" class="arrayNum" />
+      <input type="number" class="arrayNum" />
+      <input type="number" class="arrayNum" />
+      <br />
+      <button onclick="calcularSumaArray()">Calcular suma</button>
+      <button onclick="limpiarArray()">Limpiar</button>
+      <p id="sumaArray"></p>
+    </section>
+
+    <section>
+      <h2>Registro de personas</h2>
+      <input type="text" id="personaNombre" placeholder="Nombre" />
+      <input type="number" id="personaEdad" placeholder="Edad" />
+      <br />
+      <button onclick="agregarPersona()">Agregar</button>
+      <button onclick="limpiarPersonas()">Limpiar</button>
+      <ul id="listaPersonas"></ul>
+    </section>
+
+    <section>
+      <h2>Cambia color de fondo</h2>
+      <div class="color-buttons">
+        <button class="red" onclick="cambiarColor('red')">Rojo</button>
+        <button class="green" onclick="cambiarColor('green')">Verde</button>
+        <button class="blue" onclick="cambiarColor('blue')">Azul</button>
+        <button class="reset" onclick="cambiarColor('white')">Restaurar</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Mostrar/Ocultar texto</h2>
+      <button onclick="toggleTexto()">Mostrar/Ocultar</button>
+      <button onclick="restaurarTexto()">Restaurar</button>
+      <p id="textoToggle">Este es el texto que se puede ocultar.</p>
+    </section>
+
+    <section>
+      <h2>Contador con incremento y decremento</h2>
+      <button onclick="modificarContador(1)">+</button>
+      <button onclick="modificarContador(-1)">-</button>
+      <button onclick="reiniciarContadorMod()">Reiniciar</button>
+      <p id="contadorMod">0</p>
+    </section>
+
+    <script>
+      // ===== SALUDO INTERACTIVO =====
+      function saludar() {
+        const nombre = document.getElementById("nombre").value;
+        document.getElementById("saludo").textContent = `Hola, ${nombre}`;
+      }
+      function limpiarSaludo() {
+        document.getElementById("nombre").value = "";
+        document.getElementById("saludo").textContent = "";
+      }
+
+      // ===== SUMA DE NÚMEROS =====
+      function sumar() {
+        // Convierte los valores a números flotantes y suma
+        const a = parseFloat(document.getElementById("num1").value);
+        const b = parseFloat(document.getElementById("num2").value);
+        document.getElementById("resultadoSuma").textContent = `Resultado: ${
+          a + b
+        }`;
+      }
+      function limpiarSuma() {
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        document.getElementById("resultadoSuma").textContent = "";
+      }
+
+      // ===== CONVERTIDOR DE TEMPERATURA =====
+      function convertir() {
+        // Fórmula: °F = (°C × 9/5) + 32
+        const c = parseFloat(document.getElementById("celsius").value);
+        const f = (c * 9) / 5 + 32;
+        document.getElementById("fahrenheit").textContent = `${f.toFixed(
+          2
+        )} °F`;
+      }
+      function limpiarTemperatura() {
+        document.getElementById("celsius").value = "";
+        document.getElementById("fahrenheit").textContent = "";
+      }
+
+      // ===== CONTADOR SIMPLE =====
+      let contador = 0; // Variable global para almacenar el contador
+      function incrementar() {
+        contador++;
+        document.getElementById("contador").textContent = contador;
+      }
+      function reiniciarContador() {
+        contador = 0;
+        document.getElementById("contador").textContent = contador;
+      }
+
+      // ===== LISTA DE COMPRAS =====
+      function agregarProducto() {
+        const producto = document.getElementById("producto").value;
+        if (producto) {
+          // Crea un elemento <li> y lo añade a la lista
+          const li = document.createElement("li");
+          li.textContent = producto;
+          document.getElementById("listaCompras").appendChild(li);
+          document.getElementById("producto").value = "";
+        }
+      }
+      function limpiarLista() {
+        document.getElementById("producto").value = "";
+        document.getElementById("listaCompras").innerHTML = "";
+      }
+
+      // ===== SUMA DE ARRAY =====
+      function calcularSumaArray() {
+        // Obtiene todos los inputs con clase "arrayNum" y suma sus valores
+        const inputs = document.querySelectorAll(".arrayNum");
+        let suma = 0;
+        inputs.forEach((input) => {
+          suma += parseFloat(input.value) || 0;
+        });
+        document.getElementById(
+          "sumaArray"
+        ).textContent = `Suma total: ${suma}`;
+      }
+      function limpiarArray() {
+        document
+          .querySelectorAll(".arrayNum")
+          .forEach((input) => (input.value = ""));
+        document.getElementById("sumaArray").textContent = "";
+      }
+
+      // ===== REGISTRO DE PERSONAS =====
+      const personas = []; // Array para almacenar objetos con nombre y edad
+      function agregarPersona() {
+        const nombre = document.getElementById("personaNombre").value;
+        const edad = document.getElementById("personaEdad").value;
+        if (nombre && edad) {
+          // Guarda la persona en el array y la añade a la lista visual
+          personas.push({ nombre, edad });
+          const li = document.createElement("li");
+          li.textContent = `${nombre} (${edad} años)`;
+          document.getElementById("listaPersonas").appendChild(li);
+          document.getElementById("personaNombre").value = "";
+          document.getElementById("personaEdad").value = "";
+        }
+      }
+      function limpiarPersonas() {
+        document.getElementById("personaNombre").value = "";
+        document.getElementById("personaEdad").value = "";
+        document.getElementById("listaPersonas").innerHTML = "";
+        personas.length = 0; // Vacía el array
+      }
+
+      // ===== CAMBIAR COLOR DE FONDO =====
+      function cambiarColor(color) {
+        document.body.style.backgroundColor = color;
+      }
+
+      // ===== MOSTRAR/OCULTAR TEXTO =====
+      function toggleTexto() {
+        // Alterna entre mostrar (block) y ocultar (none)
+        const texto = document.getElementById("textoToggle");
+        texto.style.display = texto.style.display === "none" ? "block" : "none";
+      }
+
+      function restaurarTexto() {
+        const texto = document.getElementById("textoToggle");
+        texto.style.display = "block";
+      }
+
+      // ===== CONTADOR CON INCREMENTO Y DECREMENTO =====
+      let contadorMod = 0; // Variable global para el contador
+      function modificarContador(valor) {
+        contadorMod += valor; // Suma o resta según el valor
+        document.getElementById("contadorMod").textContent = contadorMod;
+      }
+
+      function reiniciarContadorMod() {
+        contadorMod = 0;
+        document.getElementById("contadorMod").textContent = contadorMod;
+      }
+    </script>
+  </body>
+</html>
